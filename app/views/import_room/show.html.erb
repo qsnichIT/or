@@ -1,0 +1,22 @@
+<% title "รายละเอียดวัสดุ" %>
+
+<p>
+  <strong>รหัสวัสดุ:</strong>
+  <%= @import_room.material.material_code if  @import_room.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ชื่อวัสดุ:</strong>
+  <%= @import_room.material.material_name if  @import_room.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ห้อง:</strong>
+  <%= @import_room.room.name if  @import_room.room_id.to_s != "" %>
+</p>
+<p>
+  <strong>จำนวนคงเหลือ:</strong>
+  <%= @import_room.amount %>  <%= begin @import_room.unit.name rescue "" end %>
+</p>
+
+<p>
+  <%= link_to "หน้าแรก", import_room_index_path %>
+</p>

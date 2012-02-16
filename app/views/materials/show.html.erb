@@ -1,0 +1,23 @@
+<% title "รหัสวัสดุ" %>
+
+<p>
+  <b>รหัสวัสดุ:</b>
+  <%= @material.material_code %>
+</p>
+<p>
+  <b>ชื่อวัสดุ:</b>
+  <%= @material.material_name %>
+</p>
+<p>
+  <b>เบิก ค่าใช้จ่าย:</b>
+  <%= claim @material.claim %>
+</p>
+<p>
+  <b>หน่วยนับ:</b>
+  <%= @material.unit.name if @material.unit_id.to_s != "" %>
+</p>
+
+<p>
+  <%= link_to "แก้ไข", edit_material_path(@material) %> |
+  <%= link_to "ดูรายละเอียดทั้งหมด", materials_path %>
+</p>

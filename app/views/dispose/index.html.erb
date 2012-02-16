@@ -1,0 +1,32 @@
+<% title "รายการวัสดุ" %>
+<div style="width:80%">
+<%= form_tag dispose_index_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th width="20%">รหัสวัสดุ</th>
+    <th width="20%">รหัสชื่อ</th>
+    <th width="20%">ห้อง</th>
+    <th width="20%">จำนวนคงเหลือ</th>
+    <th width="20%">เครื่องมือ</th>
+  </tr>
+  <% for dispose in @disposes %>
+    <tr>
+      <td style="padding:5px;"><%= dispose.material.material_code if  dispose.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= dispose.material.material_name if  dispose.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= dispose.room.name if  dispose.room_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= dispose.amount %></td>
+      <td align="center">
+          <%= link_to "เบิกวัสดุ", edit_dispose_path(dispose) %>
+        </td>
+    </tr>
+  <% end %>
+</table>
+
+

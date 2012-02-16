@@ -1,0 +1,16 @@
+<% title "หน่วยนับ" %>
+
+<p>
+  <b>ชื่อหน่วยนับ:</b>
+  <%= @unit.name %>
+</p>
+<p>
+  <b>สถานะใช้งาน:</b>
+  <%= status @unit.status %>
+</p>
+
+<p>
+  <%= link_to "แก้ไข", edit_unit_path(@unit) %> |
+  <%#= link_to "ลบ", @unit, :confirm => 'Are you sure?', :method => :delete %> 
+  <%= link_to "ดูรายการทั้งหมด", units_path %>
+</p>

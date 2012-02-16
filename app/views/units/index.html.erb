@@ -1,0 +1,23 @@
+<% title "หน่วยนับ" %>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr  >
+    <th width="30%">ชื่อหน่วยนับ</th>
+    <th width="30%">สถานะใช้งาน</th>
+    <th width="40%">เครื่องมือ</th>
+  </tr>
+  <% for unit in @units %>
+    <tr>
+      <td style="padding:5px;"><%= unit.name %></td>
+      <td style="padding:5px;"><%= status unit.status %></td>
+      
+      <td align="center" >
+              <%= link_to "ดูรายละเอียด", unit %> |
+              <%= link_to "แก้ไข", edit_unit_path(unit) %> 
+              <%#= link_to "ลบ", unit, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "เพิ่มรายการ", new_unit_path %></p>

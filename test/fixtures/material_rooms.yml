@@ -1,0 +1,11 @@
+one:
+  material_id: 1
+  room_id: 1
+  amount: 1
+  user_id: MyString
+
+two:
+  material_id: 1
+  room_id: 1
+  amount: 1
+  user_id: MyString

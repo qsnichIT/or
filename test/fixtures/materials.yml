@@ -1,0 +1,13 @@
+one:
+  material_code: MyString
+  material_name: MyString
+  claim: MyString
+  unit_id: 1
+  user_id: 1
+
+two:
+  material_code: MyString
+  material_name: MyString
+  claim: MyString
+  unit_id: 1
+  user_id: 1

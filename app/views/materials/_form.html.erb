@@ -1,0 +1,23 @@
+<%= form_for @material do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :material_code ,"รหัสวัสดุ" %><br />
+    <%= f.text_field :material_code %>
+  </p>
+  <p>
+    <%= f.label :material_name ,"ชื่อวัสดุ" %><br />
+    <%= f.text_field :material_name %>
+  </p>
+  <p>
+    <%= f.label :unit_id %><br />
+    <%= f.collection_select(:unit_id,Unit.find(:all,:conditions => "status = '1'"),:id,:name,:prompt => true) %>
+  </p>  
+  <p>
+    <%= f.label :claim  ,"เบิก ค่าใช้จ่าย"%><br />
+    <%= f.check_box(:claim,{},"1","0") %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  <p><%= f.submit "บันทึก"%></p>
+<% end %>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag 'extjs/resources/css/ext-all' %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'extjs/adapter/ext/ext-base','extjs/ext-all' ,"extjs/ux/Ext.ux.form.PisComboBox" %>
+                                                        
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+
+    <div id="container">
+      <% if !@current_user.nil? %>
+      <div style="height:50px;"><div style="float:right;">Signed in as <%= "#{@current_user.fname} #{@current_user.lname}".strip %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Logout", logout_path, :method => :delete, :confirm => "Are you sure you want to logout?" %></div></div>
+      <div style="clear:both;"></div>
+      <% end %>
+      <% if current_user.nil? == false %>
+        <%= tabs_tag do |tab| %>
+          <%= tab.material_room      'นำเข้าวัสดุ', root_path %>
+          <%= tab.import_room      'แจกจ่ายวัสดุ', import_room_index_path %>
+          <%= tab.dispose      'ใช้กับคนไข้', dispose_index_path %>
+          <%= tab.lost      'เสียหาย/หมดอายุ', lost_index_path %>
+          
+          
+          <%= tab.material      'รหัสวัสดุ', materials_path  if @current_user.admin == '1' %>  
+          <%= tab.room      'กำหนดห้อง', rooms_path if @current_user.admin == '1' %>
+          <%= tab.unit      'กำหนดหน่วยนับ', units_path if @current_user.admin == '1' %>
+          <%= tab.user      'กำหนดผู้ใช้งาน', users_path if @current_user.admin == '1' %>
+        <% end %>
+      <% end %>
+      <div id = "content">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
+      
+    </div>
+  </body>
+</html>

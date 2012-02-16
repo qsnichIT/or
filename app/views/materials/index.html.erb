@@ -1,0 +1,25 @@
+<% title "รหัสวัสดุ" %>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th width="20%">รหัสวัสดุ</th>
+    <th width="20%">ชื่อวัสดุ</th>
+    <th width="20%">เบิก ค่าใช้จ่าย</th>
+    <th width="20%">หน่วยนับ</th>
+    <th width="20%">เครื่องมือ</th>
+  </tr>
+  <% for material in @materials %>
+    <tr>
+      <td style="padding:5px;"><%= material.material_code %></td>
+      <td style="padding:5px;"><%= material.material_name %></td>
+      <td style="padding:5px;"><%= claim material.claim %></td>
+      <td style="padding:5px;"><%= material.unit.name if material.unit_id.to_s != "" %></td>
+      <td align="center">
+          <%= link_to "ดูรายละเอียด", material %> |
+          <%= link_to "แก้ไข", edit_material_path(material) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "เพิ่มรหัสวัสดุ", new_material_path %></p>

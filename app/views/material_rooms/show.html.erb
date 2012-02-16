@@ -1,0 +1,24 @@
+<% title "รายละเอียดวัสดุ" %>
+
+<p>
+  <strong>รหัสวัสดุ:</strong>
+  <%= @material_room.material.material_code if  @material_room.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ชื่อวัสดุ:</strong>
+  <%= @material_room.material.material_name if  @material_room.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ห้อง:</strong>
+  <%= @material_room.room.name if  @material_room.room_id.to_s != "" %>
+</p>
+<p>
+  <strong>จำนวนคงเหลือ:</strong>
+  <%= @material_room.amount %>  <%= begin @material_room.unit.name rescue "" end %>
+</p>
+
+<p>
+  <%#= link_to "แก้ไข", edit_material_room_path(@material_room) %> 
+  <%#= link_to "ลบ", @material_room, :confirm => 'Are you sure?', :method => :delete %> 
+  <%= link_to "หน้าแรก", material_rooms_path %>
+</p>

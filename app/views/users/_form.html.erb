@@ -1,0 +1,36 @@
+<%= form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :fname, "ชื่อ" %><br />
+    <%= f.text_field :fname %>
+  </p>
+  <p>
+    <%= f.label :lname, "นามสกุล" %><br />
+    <%= f.text_field :lname %>
+  </p>
+  <p>
+      <%= f.label :room_id,"ห้อง" %><br />
+      <%= f.collection_select( :room_id,Room.find(:all,:conditions => "status = '1'"),:id,:name,:prompt => true) %>
+  </p>
+  <p>
+    <%= f.label :admin,"Admin" %><br />
+    <%= f.check_box(:admin,{},"1","0") %>
+  </p>
+  <p><%= f.submit "บันทึก" %></p>
+<% end %>

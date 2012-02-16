@@ -1,0 +1,18 @@
+<%= form_for @dispose, :url => dispose_path(@dispose)  do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :room_id,"ห้อง: " %><%= begin @dispose.room.name rescue "" end %></p>
+  <p> <%= f.label :material_id,"วัสดุ: " %><%= @dispose.material.material_name %>  </p>
+  <p>
+    <label >HN:</label>
+    <%= text_field_tag "hn" %>
+  </p>
+  <p>
+    <%= f.label :amount,"จำนวน: " %>
+    <%= f.number_field :amount,:value => "" %>&nbsp;&nbsp;&nbsp;คงเหลือ&nbsp;<%= @dispose.amount %>&nbsp;&nbsp;<%= begin @dispose.unit.name rescue "" end %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  <p><input type="button" value="บันทึก" onclick="this.form.submit()"></p>
+<% end %>
+

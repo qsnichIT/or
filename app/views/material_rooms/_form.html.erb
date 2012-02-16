@@ -1,0 +1,71 @@
+<%= form_for @material_room do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <% if @material_room.new_record? %>
+      
+      <% if @current_user.admin == '1' %>
+        <%= f.label :room_id,"ห้อง" %><br />
+        <%= f.collection_select( :room_id,Room.find(:all,:conditions => "status = '1'"),:id,:name,:prompt => true) %>
+      <% else %>
+        ห้อง: <%= @current_user.room.name %>
+        <%= f.hidden_field :room_id, :value => @current_user.room_id %>
+      <% end %>
+    <% else %>
+      <%= f.label :room_id,"ห้อง: " %>
+      <%= begin @material_room.room.name rescue "" end %>
+    <% end %>
+  </p>
+  
+  <p>
+    <% if @material_room.new_record? %>
+      <%= f.label :material_id,"วัสดุ" %><br />
+      <div id="div_material_id"></div>
+    <% else %>
+      <%= f.label :material_id,"วัสดุ: " %><%= @material_room.material.material_name %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :amount,"จำนวน" %><br />
+    <%= f.number_field :amount %>
+  </p>
+  
+
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  
+  
+  <p><input type="button" value="บันทึก" onclick="this.form.submit()"></p>
+<% end %>
+
+<% if @material_room.new_record? %>
+<script type="text/javascript">
+  Ext.onReady(function(){
+    new Ext.ux.form.PisComboBox({
+      renderTo: "div_material_id"
+      ,hiddenName: 'material_room[material_id]'
+      ,id: 'material_room[material_id]'
+      ,listWidth: 400
+      ,valueField: 'id'
+      ,displayField: 'material_name'
+      ,urlStore: '/code/material'
+      ,fieldStore: ['id', 'material_name']
+    });
+  <% if @material_room.material_id.to_s != "" %>
+    Ext.getCmp("material_room[material_id]").getStore().load({
+        params: {
+                 id: <%= @material_room.material_id%>
+                 ,start: 0
+                 ,limit: 10
+        }
+        ,callback :function(){
+                 Ext.getCmp("material_room[material_id]").setValue(<%= @material_room.material_id%>);
+        }
+     });
+  <% end %>    
+  });
+  
+
+</script>
+<% end %>

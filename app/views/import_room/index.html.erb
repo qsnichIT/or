@@ -1,0 +1,32 @@
+<% title "รายการวัสดุ" %>
+<div style="width:80%">
+<%= form_tag import_room_index_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th width="20%">รหัสวัสดุ</th>
+    <th width="20%">รหัสชื่อ</th>
+    <th width="20%">ห้อง</th>
+    <th width="20%">จำนวนคงเหลือ</th>
+    <th width="20%">เครื่องมือ</th>
+  </tr>
+  <% for import_room in @import_rooms %>
+    <tr>
+      <td style="padding:5px;"><%= import_room.material.material_code if  import_room.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= import_room.material.material_name if  import_room.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= import_room.room.name if  import_room.room_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= import_room.amount %></td>
+      <td align="center">
+          <%= link_to "เบิกวัสดุ", edit_import_room_path(import_room) %>
+        </td>
+    </tr>
+  <% end %>
+</table>
+
+

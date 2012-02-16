@@ -1,0 +1,18 @@
+<%= form_for @room do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name, "ชื่อห้อง" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :status,"สถานะใช้งาน" %><br />
+    <%= f.check_box(:status,{},"1","0") %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>  
+  <p><%= f.submit "บันทึก" %></p>
+<% end %>

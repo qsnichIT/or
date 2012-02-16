@@ -1,0 +1,22 @@
+<% title "ห้อง" %>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th  width="30%">ชื่อห้อง</th>
+    <th  width="30%">สถานะใช้งาน</th>
+    <th  width="40%">เครื่องมือ</th>
+  </tr>
+  <% for room in @rooms %>
+    <tr>
+      <td style="padding:5px;"><%= room.name %></td>
+      <td style="padding:5px;"><%= status room.status %></td>
+      <td align="center">
+        <%= link_to "ดูรายละเอียด", room %> |
+        <%= link_to "แก้ไข", edit_room_path(room) %> 
+        <%#= link_to "ลบ", room, :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "เพิ่มห้อง", new_room_path %></p>

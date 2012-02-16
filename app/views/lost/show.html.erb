@@ -1,0 +1,22 @@
+<% title "รายละเอียดวัสดุ" %>
+
+<p>
+  <strong>รหัสวัสดุ:</strong>
+  <%= @lost.material.material_code if  @lost.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ชื่อวัสดุ:</strong>
+  <%= @lost.material.material_name if  @lost.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ห้อง:</strong>
+  <%= @lost.room.name if  @lost.room_id.to_s != "" %>
+</p>
+<p>
+  <strong>จำนวนคงเหลือ:</strong>
+  <%= @lost.amount %>  <%= begin @lost.unit.name rescue "" end %>
+</p>
+
+<p>
+  <%= link_to "หน้าแรก", lost_index_path %>
+</p>

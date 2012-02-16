@@ -1,0 +1,21 @@
+<%= form_for @lost, :url => lost_path(@lost)  do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :room_id,"ห้อง: " %><%= begin @lost.room.name rescue "" end %></p>
+  <p> <%= f.label :material_id,"วัสดุ: " %><%= @lost.material.material_name %>  </p>
+  <p>
+    <label >ประเภท:</label>
+    <select id="lost" name="lost">
+      <option value="lost">เสียหาย</option>
+      <option value="expire">หมดอายุ</option>
+    </select>
+  </p>
+  <p>
+    <%= f.label :amount,"จำนวน: " %>
+    <%= f.number_field :amount,:value => "" %>&nbsp;&nbsp;&nbsp;คงเหลือ&nbsp;<%= @lost.amount %>&nbsp;&nbsp;<%= begin @lost.unit.name rescue "" end %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  <p><input type="button" value="บันทึก" onclick="this.form.submit()"></p>
+<% end %>
+

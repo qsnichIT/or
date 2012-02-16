@@ -1,0 +1,33 @@
+<% title "รายการวัสดุ" %>
+<div style="width:80%">
+<%= form_tag lost_index_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th width="20%">รหัสวัสดุ</th>
+    <th width="20%">รหัสชื่อ</th>
+    <th width="20%">ห้อง</th>
+    <th width="20%">จำนวนคงเหลือ</th>
+    <th width="20%">เครื่องมือ</th>
+  </tr>
+  <% for lost in @losts %>
+    <tr>
+      <td style="padding:5px;"><%= lost.material.material_code if  lost.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= lost.material.material_name if  lost.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= lost.room.name if  lost.room_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= lost.amount %></td>
+      <td align="center">
+          <%= link_to "เบิกวัสดุ", edit_lost_path(lost) %>
+        </td>
+    </tr>
+  <% end %>
+</table>
+
+

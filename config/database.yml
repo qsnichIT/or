@@ -1,0 +1,17 @@
+common: &shared
+  adapter: postgresql
+  encoding: unicode
+  database: or_store
+  pool: 5
+  username: postgres
+  password: 1234
+
+
+development:
+  <<: *shared
+
+test:
+  <<: *shared
+
+production:
+  <<: *shared

@@ -1,0 +1,22 @@
+<% title "รายละเอียดวัสดุ" %>
+
+<p>
+  <strong>รหัสวัสดุ:</strong>
+  <%= @dispose.material.material_code if  @dispose.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ชื่อวัสดุ:</strong>
+  <%= @dispose.material.material_name if  @dispose.material_id.to_s != "" %>
+</p>
+<p>
+  <strong>ห้อง:</strong>
+  <%= @dispose.room.name if  @dispose.room_id.to_s != "" %>
+</p>
+<p>
+  <strong>จำนวนคงเหลือ:</strong>
+  <%= @dispose.amount %>  <%= begin @dispose.unit.name rescue "" end %>
+</p>
+
+<p>
+  <%= link_to "หน้าแรก", dispose_index_path %>
+</p>

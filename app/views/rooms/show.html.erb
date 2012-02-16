@@ -1,0 +1,16 @@
+<% title "ห้อง" %>
+
+<p>
+  <b>ชื่อห้อง:</b>
+  <%= @room.name %>
+</p>
+<p>
+  <b>สถานะใช้งาน:</b>
+  <%= status @room.status %>
+</p>
+
+<p>
+  <%= link_to "แก้ไข", edit_room_path(@room) %> |
+  <%#= link_to "ลบ", @room, :confirm => 'Are you sure?', :method => :delete %> 
+  <%= link_to "ดูรายละเอียดทั้งหมด", rooms_path %>
+</p>

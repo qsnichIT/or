@@ -1,0 +1,18 @@
+<%= form_for @import_room, :url => import_room_path(@import_room)  do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :room_id,"ห้อง: " %><%= begin @import_room.room.name rescue "" end %></p>
+  <p> <%= f.label :material_id,"วัสดุ: " %><%= @import_room.material.material_name %>  </p>
+  <p>
+    <label >นำเข้าห้อง:</label>
+    <%= collection_select(:room, :room_id, Room.find(:all,:conditions => "status = '1' and id != #{@current_user.room_id} and id != #{@import_room.room_id}"), :id, :name,:prompt => true) %>
+  </p>
+  <p>
+    <%= f.label :amount,"จำนวน: " %>
+    <%= f.number_field :amount,:value => "" %>&nbsp;&nbsp;&nbsp;คงเหลือ&nbsp;<%= @import_room.amount %>&nbsp;&nbsp;<%= begin @import_room.unit.name rescue "" end %>
+  </p>
+  <p>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+  </p>
+  <p><input type="button" value="บันทึก" onclick="this.form.submit()"></p>
+<% end %>
+

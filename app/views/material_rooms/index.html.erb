@@ -1,0 +1,25 @@
+<% title "รายการวัสดุ" %>
+
+<table style="border:1px solid;border-collapse:collapse;" border=1 width="80%" align="center">
+  <tr>
+    <th width="20%">รหัสวัสดุ</th>
+    <th width="20%">รหัสชื่อ</th>
+    <th width="20%">ห้อง</th>
+    <th width="20%">จำนวนคงเหลือ</th>
+    <th width="20%">เครื่องมือ</th>
+  </tr>
+  <% for material_room in @material_rooms %>
+    <tr>
+      <td style="padding:5px;"><%= material_room.material.material_code if  material_room.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= material_room.material.material_name if  material_room.material_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= material_room.room.name if  material_room.room_id.to_s != "" %></td>
+      <td style="padding:5px;"><%= material_room.amount %></td>
+      <td align="center">
+          <%= link_to "ดูรายละเอียด", material_room %>
+          <!--|<%= link_to "เบิกวัสดุ", edit_material_room_path(material_room) %>-->
+        </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "นำเข้าวัสดุ", new_material_room_path %></p>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  material_id: 1
+  amount: 1
+  type: 
+  hn: MyString
+  room_id: 1
+  user_id: 1
+
+two:
+  material_id: 1
+  amount: 1
+  type: 
+  hn: MyString
+  room_id: 1
+  user_id: 1
