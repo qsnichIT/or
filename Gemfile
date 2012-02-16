@@ -38,4 +38,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'ruby-debug'
 
 gem 'mongrel'
-
+gem 'yaml_db'
